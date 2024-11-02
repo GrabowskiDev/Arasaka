@@ -30,7 +30,6 @@ for (let i = 1; i <= 84; i++) {
 const items = document.querySelectorAll('.item');
 items.forEach(item => {
 	item.onclick = () => {
-		console.log(item.id);
 		activeImage = Number(item.id);
 		displayImage();
 		main.classList.add('open');
@@ -38,24 +37,39 @@ items.forEach(item => {
 });
 
 // Picture viewer buttons
-nextBtn.addEventListener('click', () => {
-	console.log(activeImage);
+function nextImg() {
 	activeImage += 1;
 	if (activeImage > N) {
 		activeImage = 1;
 	}
-	console.log(activeImage);
 	displayImage();
-});
+}
 
-prevBtn.addEventListener('click', () => {
+function prevImg() {
 	activeImage -= 1;
 	if (activeImage <= 0) {
 		activeImage = N;
 	}
 	displayImage();
-});
+}
+
+nextBtn.addEventListener('click', nextImg);
+
+prevBtn.addEventListener('click', prevImg);
 
 closeBtn.addEventListener('click', () => {
 	main.classList.remove('open');
 });
+
+window.addEventListener(
+	'keydown',
+	function (e) {
+		if (e.key == 'ArrowRight') {
+			nextImg();
+		}
+		if (e.key == 'ArrowLeft') {
+			prevImg();
+		}
+	},
+	false
+);

@@ -101,6 +101,10 @@ p {
 	color: #e60000;
 }
 
+.header-link:active {
+	transition: none; /* so clicking turns the text red instantly */
+}
+
 .nav-button {
 	width: 4.8rem;
 	height: 4.8rem;
